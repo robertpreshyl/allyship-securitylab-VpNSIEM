@@ -1,0 +1,36 @@
+{
+  "management": {
+    "server": {
+      "host": "netbird.allyshipglobal.com",
+      "port": 443,
+      "protocol": "https"
+    },
+    "authentication": {
+      "method": "jwt",
+      "token_file": "/etc/netbird/token"
+    },
+    "network": {
+      "name": "netbird-siem-network",
+      "cidr": "10.0.0.0/16",
+      "mtu": 1420
+    }
+  },
+  "peers": {
+    "security_onion": {
+      "name": "security-onion-siem",
+      "ip": "10.0.0.101",
+      "public_key": "XXXXXXXX",
+      "endpoint": "10.0.0.101:51820"
+    },
+    "azure_sentinel": {
+      "name": "azure-sentinel-cloud",
+      "ip": "10.0.1.20",
+      "public_key": "XXXXXXXXX",
+     
+    }
+  },
+  "logging": {
+    "level": "info",
+    "file": "/var/log/netbird/management.log"
+  }
+}

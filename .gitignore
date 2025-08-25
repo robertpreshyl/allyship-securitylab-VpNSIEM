@@ -1,0 +1,14 @@
+# Project-specific ignores
+frontend/context.md
+
+# OS / Editor files
+.DS_Store
+*.swp
+*.swo
+
+# Logs and caches
+*.log
+
+# Build artifacts
+/dist/
+/build/

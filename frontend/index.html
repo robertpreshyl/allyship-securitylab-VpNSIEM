@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASL VPN - Secure Cloud-Local Network Integration | Allyship Security Lab</title>
+    <meta name="description" content="Privacy-first networking for cybersecurity lab environment. Self-hosted NetBird instance with Security Onion SIEM integration by Allyship Security Lab.">
+    <meta name="keywords" content="ASL VPN, NetBird, cybersecurity, SIEM, Security Onion, zero-trust, VPN, networking, Allyship Security Lab">
+    <meta name="author" content="Allyship Security Lab">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://allyshipglobal.com/">
+    <meta property="og:title" content="ASL VPN - Secure Cloud-Local Network Integration">
+    <meta property="og:description" content="Privacy-first networking for cybersecurity lab environment by Allyship Security Lab">
+    <meta property="og:image" content="assets/asl-logo-full.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://allyshipglobal.com/">
+    <meta property="twitter:title" content="ASL VPN - Secure Cloud-Local Network Integration">
+    <meta property="twitter:description" content="Privacy-first networking for cybersecurity lab environment by Allyship Security Lab">
+    <meta property="twitter:image" content="assets/asl-logo-full.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preload" as="script" href="script.js">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Primary">
+        <div class="nav-container">
+            <a href="/" class="nav-brand" aria-label="ASL Shield VPN Home">
+                <img src="assets/asl-logo-mark.png" alt="ASL Shield" class="brand-logo" loading="lazy">
+                <span class="brand-text" aria-label="Product">VPN</span>
+            </a>
+            <div class="nav-menu">
+                <a href="#hero" class="nav-link" aria-current="page">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#technical" class="nav-link">Architecture</a>
+                <a href="#validation" class="nav-link">Performance</a>
+                <a href="#cta" class="nav-link">Access</a>
+                <a href="/readme" class="nav-link">Documentation</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle dark mode">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Inline SVG Icon Sprite -->
+    <svg aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute">
+        <defs>
+            <symbol id="icon-shield" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 2l8 4v6c0 5-3.5 9.5-8 10-4.5-.5-8-5-8-10V6l8-4z"/>
+            </symbol>
+            <symbol id="icon-chart" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M3 3h2v18H3V3zm4 10h2v8H7v-8zm4-6h2v14h-2V7zm4 4h2v10h-2V11zm4-8H3v2h18V3z"/>
+            </symbol>
+            <symbol id="icon-building" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M4 22h16v-2H4v2zM6 2h12v16H6V2zm2 2v2h2V4H8zm0 4v2h2V8H8zm0 4v2h2v-2H8zm4-8v2h2V4h-2zm0 4v2h2V8h-2zm0 4v2h2v-2h-2z"/>
+            </symbol>
+            <symbol id="icon-search" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM9.5 14C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </symbol>
+            <symbol id="icon-globe" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 2.05V11H4.05A8.003 8.003 0 0111 4.05zM4.05 13H11v6.95A8.003 8.003 0 014.05 13zM13 19.95V13h6.95A8.003 8.003 0 0113 19.95zM13 11V4.05A8.003 8.003 0 0119.95 11H13z"/>
+            </symbol>
+            <symbol id="icon-bolt" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M11 21h-1l1-7H8l6-11h1l-1 7h3l-6 11z"/>
+            </symbol>
+            <symbol id="icon-check" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/>
+            </symbol>
+            <symbol id="icon-launch" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M5 19l4-1 7-7-3-3-7 7-1 4zm9-13l3 3 2-2a3 3 0 00-3-3l-2 2zM3 21l2-6 4 4-6 2z"/>
+            </symbol>
+            <symbol id="icon-user" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 12a5 5 0 100-10 5 5 0 000 10zm-9 9a9 9 0 1118 0H3z"/>
+            </symbol>
+            <symbol id="icon-book" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M6 2h11a2 2 0 012 2v16a2 2 0 01-2 2H6a3 3 0 01-3-3V5a3 3 0 013-3zm0 2a1 1 0 00-1 1v14a1 1 0 001 1h10V4H6z"/>
+            </symbol>
+            <symbol id="icon-lock" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 2a5 5 0 00-5 5v3H5a1 1 0 00-1 1v10a1 1 0 001 1h14a1 1 0 001-1V11a1 1 0 00-1-1h-2V7a5 5 0 00-5-5zm-3 8V7a3 3 0 016 0v3H9z"/>
+            </symbol>
+        </defs>
+    </svg>
+
+    <!-- Hero Section -->
+    <main id="main" tabindex="-1">
+    <section id="hero" class="hero" aria-labelledby="hero-title">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-text">Allyship Security Lab Implementation</span>
+                </div>
+                <h1 class="hero-title" id="hero-title">
+                    <span class="title-line">ASL VPN</span>
+                    <span class="title-line highlight">Secure Cloud-Local Network Integration</span>
+                </h1>
+                <p class="hero-subtitle">Zero‑trust networking for cloud and on‑prem security operations</p>
+                <p class="hero-description">
+                    This self-hosted NetBird instance enables zero-trust networking across hybrid cloud and on-premises infrastructure.
+                    Seamlessly connecting Security Onion SIEM with enterprise endpoints for comprehensive threat detection and log aggregation.
+                    Built with privacy and security as core principles, demonstrating enterprise-grade cybersecurity at scale.
+                </p>
+                <div class="hero-buttons">
+                    <a href="https://asl.allyshipglobal.com/ui/login/login?" class="btn btn-primary" aria-label="Access Dashboard">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-lock"/></svg>
+                        Access Dashboard
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual" role="img" aria-label="Interactive network diagram illustrating zero-trust connections">
+                <div class="network-diagram">
+                    <div class="diagram-header">
+                        <h3>Network Architecture Overview</h3>
+                        <p>Real-time connectivity across hybrid environments</p>
+                    </div>
+                    <svg viewBox="0 0 500 400" class="diagram-svg">
+                        <!-- Cloud Environment -->
+                        <g class="cloud-node" tabindex="0">
+                            <title>AWS Cloud: Hosts NetBird server, Signal and TURN</title>
+                            <rect x="50" y="50" width="120" height="80" rx="12" fill="var(--accent-color)" opacity="0.15" stroke="var(--accent-color)" stroke-width="2"/>
+                            <text x="110" y="75" text-anchor="middle" class="node-text">AWS Cloud</text>
+                            <text x="110" y="95" text-anchor="middle" class="node-subtext">NetBird Server</text>
+                            <text x="110" y="110" text-anchor="middle" class="node-subtext">Signal + TURN</text>
+                        </g>
+                        
+                        <!-- NetBird Hub -->
+                        <g class="netbird-hub" tabindex="0">
+                            <title>NetBird Control Plane: Issues keys and policies</title>
+                            <circle cx="250" cy="200" r="40" fill="var(--primary-color)" opacity="0.2" stroke="var(--accent-secondary)" stroke-width="3"/>
+                            <text x="250" y="200" text-anchor="middle" class="hub-text">NetBird</text>
+                            <text x="250" y="215" text-anchor="middle" class="hub-subtext">Control Plane</text>
+                        </g>
+                        
+                        <!-- On-Premises Network -->
+                        <g class="onprem-node" tabindex="0">
+                            <title>On‑Premises: Security Onion SIEM, AD services</title>
+                            <rect x="350" y="50" width="120" height="80" rx="12" fill="var(--accent-secondary)" opacity="0.15" stroke="var(--accent-secondary)" stroke-width="2"/>
+                            <text x="410" y="75" text-anchor="middle" class="node-text">On-Premises</text>
+                            <text x="410" y="95" text-anchor="middle" class="node-subtext">Security Onion</text>
+                            <text x="410" y="110" text-anchor="middle" class="node-subtext">SIEM + AD</text>
+                        </g>
+                        
+                        <!-- Endpoints -->
+                        <g class="endpoints" tabindex="0">
+                            <title>Endpoints: 15+ devices connected via WireGuard</title>
+                            <circle cx="100" cy="300" r="25" fill="var(--surface)" opacity="0.8" stroke="var(--accent-color)" stroke-width="2"/>
+                            <text x="100" y="305" text-anchor="middle" class="endpoint-text">Endpoints</text>
+                            <text x="100" y="320" text-anchor="middle" class="endpoint-subtext">15+ Devices</text>
+                        </g>
+                        
+                        <!-- Connections with data flow -->
+                        <path d="M 170 90 Q 200 140 210 160" stroke="var(--accent-color)" stroke-width="3" fill="none" opacity="0.8"/>
+                        <path d="M 350 90 Q 320 140 290 160" stroke="var(--accent-secondary)" stroke-width="3" fill="none" opacity="0.8"/>
+                        <path d="M 100 275 Q 150 200 210 160" stroke="var(--accent-color)" stroke-width="3" fill="none" opacity="0.8"/>
+                        
+                        <!-- Data flow indicators -->
+                        <circle cx="190" cy="125" r="4" fill="var(--accent-color)" class="pulse"/>
+                        <circle cx="310" cy="125" r="4" fill="var(--accent-secondary)" class="pulse"/>
+                        <circle cx="155" cy="237" r="4" fill="var(--accent-color)" class="pulse"/>
+                        
+                        <!-- Connection labels -->
+                        <text x="190" y="140" class="connection-label">Secure Tunnel</text>
+                        <text x="310" y="140" class="connection-label">SIEM Integration</text>
+                        <text x="155" y="252" class="connection-label">Zero-Trust</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Transparency Section -->
+    <section id="security" class="security" aria-labelledby="security-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="security-title" class="section-title">Security Transparency</h2>
+                <p class="section-subtitle">Real-time operational status across critical services</p>
+            </div>
+            <div class="status-grid" role="status" aria-live="polite">
+                <article class="status-card" aria-label="Authentication Service status">
+                    <header class="status-header">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-user"/></svg>
+                        <h3>Authentication</h3>
+                    </header>
+                    <div class="status-body">
+                        <span class="status-dot status-ok" aria-hidden="true"></span>
+                        <span class="status-text">Operational</span>
+                    </div>
+                    <p class="status-note">MFA enforced. No incidents detected.</p>
+                </article>
+
+                <article class="status-card" aria-label="VPN Control Plane status">
+                    <header class="status-header">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-lock"/></svg>
+                        <h3>VPN Control Plane</h3>
+                    </header>
+                    <div class="status-body">
+                        <span class="status-dot status-ok" aria-hidden="true"></span>
+                        <span class="status-text">Operational</span>
+                    </div>
+                    <p class="status-note">Zero‑trust policies active. Key rotation healthy.</p>
+                </article>
+
+                <article class="status-card" aria-label="SIEM Ingestion status">
+                    <header class="status-header">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-chart"/></svg>
+                        <h3>SIEM Ingestion</h3>
+                    </header>
+                    <div class="status-body">
+                        <span class="status-dot status-ok" aria-hidden="true"></span>
+                        <span class="status-text">Operational</span>
+                    </div>
+                    <p class="status-note">Throughput stable. No backlog.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Core Implementation Features</h2>
+                <p class="section-subtitle">Enterprise-grade cybersecurity infrastructure built for scale</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true"><svg class="icon icon-lg"><use href="#icon-shield"/></svg></div>
+                    <h3>Zero-Trust Architecture</h3>
+                    <p>Complete zero-trust networking with Security Onion SIEM integration, ensuring every connection is verified and monitored for comprehensive threat detection.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Security</span>
+                        <span class="tag">SIEM</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true"><svg class="icon icon-lg"><use href="#icon-chart"/></svg></div>
+                    <h3>Secure Log Aggregation</h3>
+                    <p>Seamless log collection from distributed endpoints to centralized SIEM, maintaining data integrity and confidentiality across hybrid infrastructure.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Logging</span>
+                        <span class="tag">Analytics</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true"><svg class="icon icon-lg"><use href="#icon-building"/></svg></div>
+                    <h3>AD Integration</h3>
+                    <p>Active Directory integration provides centralized identity management and policy enforcement across all network participants and security tools.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Identity</span>
+                        <span class="tag">Policy</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true"><svg class="icon icon-lg"><use href="#icon-lock"/></svg></div>
+                    <h3>WireGuard VPN</h3>
+                    <p>Custom WireGuard deployment with enhanced security configurations, providing encrypted tunnels optimized for cybersecurity operations and monitoring.</p>
+                    <div class="feature-tags">
+                        <span class="tag">VPN</span>
+                        <span class="tag">Encryption</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Implementation Section -->
+    <section id="technical" class="technical">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Technical Architecture</h2>
+                <p class="section-subtitle">Built for performance, security, and scalability</p>
+            </div>
+            <div class="technical-content">
+                <div class="technical-details">
+                    <h3>Infrastructure Specifications</h3>
+                    <div class="tech-specs">
+                        <div class="spec-item">
+                            <div class="spec-info">
+                                <span class="spec-label">Platform</span>
+                                <span class="spec-value">AWS VPS (Ubuntu 22.04)</span>
+                            </div>
+                            <div class="spec-icon">☁️</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-info">
+                                <span class="spec-label">SIEM Integration</span>
+                                <span class="spec-value">Security Onion</span>
+                            </div>
+                            <div class="spec-icon">🔍</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-info">
+                                <span class="spec-label">Network Scale</span>
+                                <span class="spec-value">15+ Endpoints</span>
+                            </div>
+                            <div class="spec-icon">🌐</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-info">
+                                <span class="spec-label">Security Model</span>
+                                <span class="spec-value">Zero-Trust</span>
+                            </div>
+                            <div class="spec-icon">🔒</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="architecture-diagram">
+                    <h3>Network Topology</h3>
+                    <svg viewBox="0 0 600 500" class="arch-svg">
+                        <!-- AWS Infrastructure -->
+                        <g class="aws-infra">
+                            <rect x="20" y="20" width="560" height="140" rx="16" fill="var(--primary-color)" opacity="0.1" stroke="var(--primary-color)" stroke-width="2"/>
+                            <text x="40" y="50" class="arch-label">AWS Infrastructure (Ubuntu 22.04)</text>
+                            
+                            <!-- NetBird Management -->
+                            <rect x="50" y="70" width="140" height="70" rx="8" fill="var(--accent-color)" opacity="0.2"/>
+                            <text x="120" y="95" text-anchor="middle" class="node-text">NetBird</text>
+                            <text x="120" y="110" text-anchor="middle" class="small-text">Management API</text>
+                            <text x="120" y="125" text-anchor="middle" class="small-text">Dashboard</text>
+                            
+                            <!-- Signal Server -->
+                            <rect x="230" y="70" width="140" height="70" rx="8" fill="var(--accent-secondary)" opacity="0.2"/>
+                            <text x="300" y="95" text-anchor="middle" class="node-text">Signal Server</text>
+                            <text x="300" y="110" text-anchor="middle" class="small-text">P2P Coordination</text>
+                            <text x="300" y="125" text-anchor="middle" class="small-text">NAT Traversal</text>
+                            
+                            <!-- TURN Server -->
+                            <rect x="410" y="70" width="140" height="70" rx="8" fill="var(--accent-color)" opacity="0.2"/>
+                            <text x="480" y="95" text-anchor="middle" class="node-text">TURN Server</text>
+                            <text x="480" y="110" text-anchor="middle" class="small-text">Relay Service</text>
+                            <text x="480" y="125" text-anchor="middle" class="small-text">Fallback</text>
+                        </g>
+                        
+                        <!-- On-Premises Lab -->
+                        <g class="onprem-lab">
+                            <rect x="20" y="200" width="280" height="200" rx="16" fill="var(--accent-secondary)" opacity="0.1" stroke="var(--accent-secondary)" stroke-width="2"/>
+                            <text x="40" y="230" class="arch-label">On-Premises Cybersecurity Lab</text>
+                            
+                            <!-- Security Onion -->
+                            <rect x="40" y="250" width="120" height="60" rx="8" fill="var(--primary-color)" opacity="0.3"/>
+                            <text x="100" y="275" text-anchor="middle" class="node-text">Security Onion</text>
+                            <text x="100" y="290" text-anchor="middle" class="small-text">SIEM Platform</text>
+                            
+                            <!-- Active Directory -->
+                            <rect x="40" y="330" width="120" height="60" rx="8" fill="var(--accent-color)" opacity="0.3"/>
+                            <text x="100" y="355" text-anchor="middle" class="node-text">Active Directory</text>
+                            <text x="100" y="370" text-anchor="middle" class="small-text">Identity Mgmt</text>
+                            
+                            <!-- Endpoints -->
+                            <circle cx="220" cy="280" r="30" fill="var(--accent-secondary)" opacity="0.3"/>
+                            <text x="220" y="285" text-anchor="middle" class="small-text">Network</text>
+                            <text x="220" y="300" text-anchor="middle" class="small-text">Endpoints</text>
+                        </g>
+                        
+                        <!-- Remote Clients -->
+                        <g class="remote-clients">
+                            <rect x="320" y="200" width="260" height="200" rx="16" fill="var(--primary-color)" opacity="0.1" stroke="var(--primary-color)" stroke-width="2"/>
+                            <text x="340" y="230" class="arch-label">Remote & Cloud Clients</text>
+                            
+                            <!-- Client Types -->
+                            <circle cx="360" cy="260" r="20" fill="var(--accent-color)" opacity="0.4"/>
+                            <text x="360" y="265" text-anchor="middle" class="tiny-text">Mobile</text>
+                            
+                            <circle cx="420" cy="260" r="20" fill="var(--accent-color)" opacity="0.4"/>
+                            <text x="420" y="265" text-anchor="middle" class="tiny-text">Laptop</text>
+                            
+                            <circle cx="480" cy="260" r="20" fill="var(--accent-color)" opacity="0.4"/>
+                            <text x="480" y="265" text-anchor="middle" class="tiny-text">Desktop</text>
+                            
+                            <circle cx="390" cy="320" r="20" fill="var(--accent-color)" opacity="0.4"/>
+                            <text x="390" y="325" text-anchor="middle" class="tiny-text">IoT</text>
+                            
+                            <circle cx="450" cy="320" r="20" fill="var(--accent-color)" opacity="0.4"/>
+                            <text x="450" y="325" text-anchor="middle" class="tiny-text">Server</text>
+                            
+                            <circle cx="510" cy="320" r="20" fill="var(--accent-color)" opacity="0.4"/>
+                            <text x="510" y="325" text-anchor="middle" class="tiny-text">Cloud</text>
+                        </g>
+                        
+                        <!-- Secure Connections -->
+                        <path d="M 120 140 Q 150 180 120 200" stroke="var(--accent-color)" stroke-width="4" fill="none" opacity="0.8"/>
+                        <path d="M 300 140 Q 330 180 360 200" stroke="var(--accent-color)" stroke-width="4" fill="none" opacity="0.8"/>
+                        <path d="M 480 140 Q 510 180 540 200" stroke="var(--accent-color)" stroke-width="4" fill="none" opacity="0.8"/>
+                        
+                        <!-- Data flow indicators -->
+                        <circle cx="135" cy="170" r="5" fill="var(--accent-color)" class="pulse"/>
+                        <circle cx="315" cy="170" r="5" fill="var(--accent-color)" class="pulse"/>
+                        <circle cx="495" cy="170" r="5" fill="var(--accent-color)" class="pulse"/>
+                        
+                        <!-- Connection labels -->
+                        <text x="135" y="185" class="arch-connection-label">Secure Tunnel</text>
+                        <text x="315" y="185" class="arch-connection-label">P2P Connection</text>
+                        <text x="495" y="185" class="arch-connection-label">Relay Service</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real-World Validation Section -->
+    <section id="validation" class="validation">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Performance Metrics</h2>
+                <p class="section-subtitle">Real-world validation of enterprise-grade infrastructure</p>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card" data-counter>
+                    <div class="metric-icon" aria-hidden="true"><svg class="icon icon-lg"><use href="#icon-chart"/></svg></div>
+                    <div class="metric-number" data-target="14700000" data-suffix="+">0</div>
+                    <div class="metric-label">Security Events Weekly</div>
+                    <div class="metric-description">Continuous monitoring and analysis of network traffic and security events</div>
+                </div>
+                
+                <div class="metric-card" data-counter>
+                    <div class="metric-icon" aria-hidden="true"><svg class="icon icon-lg"><use href="#icon-check"/></svg></div>
+                    <div class="metric-number" data-target="99.998" data-decimals="3" data-suffix="%">0%</div>
+                    <div class="metric-label">Event Delivery Rate</div>
+                    <div class="metric-description">High-reliability log aggregation from distributed endpoints to SIEM</div>
+                </div>
+                
+                <div class="metric-card" data-counter>
+                    <div class="metric-icon" aria-hidden="true"><svg class="icon icon-lg"><use href="#icon-bolt"/></svg></div>
+                    <div class="metric-number" data-target="45" data-suffix="ms">0ms</div>
+                    <div class="metric-label">Average Latency</div>
+                    <div class="metric-description">Optimized WireGuard tunnels ensuring minimal performance impact</div>
+                </div>
+            </div>
+            
+            <div class="validation-statement">
+                <div class="statement-content">
+                    <h3>Enterprise-Grade at Minimal Cost</h3>
+                    <p>This implementation demonstrates enterprise-grade telemetry and security monitoring at minimal cost, proving that robust cybersecurity infrastructure can be achieved through careful architecture and open-source solutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section id="cta" class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Access Your Network?</h2>
+                <p class="cta-description">
+                    Experience the power of self-hosted zero-trust networking with enterprise-grade security monitoring.
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://asl.allyshipglobal.com/ui/login/login?" class="btn btn-primary btn-large" aria-label="Access Dashboard">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-lock"/></svg>
+                        Access Dashboard
+                    </a>
+                    <a href="https://asl.allyshipglobal.com/ui/login/loginname" class="btn btn-secondary btn-large" aria-label="Create Account">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-user"/></svg>
+                        Create Account
+                    </a>
+                </div>
+                <div class="cta-links">
+                    <a href="https://github.com/robertpreshyl/netbird-cloud-local-siem" class="cta-link" target="_blank" rel="noopener" aria-label="View GitHub Implementation">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-book"/></svg>
+                        View GitHub Implementation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Column 1: Branding + tagline -->
+                <div class="footer-col">
+                    <div class="footer-brand">
+                        <img src="assets/asl-logo-mark.png" alt="ASL Shield" class="footer-logo" loading="lazy">
+                        <span class="brand-text">VPN</span>
+                    </div>
+                    <p class="footer-tagline">Building a global team of security‑minded professionals for practical, real‑world testing.</p>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-list">
+                        <li><a href="https://asl.allyshipglobal.com/ui/login/login?" class="footer-link">Login</a></li>
+                        <li><a href="https://asl.allyshipglobal.com/ui/login/loginname" class="footer-link">Register</a></li>
+                        <li><a href="https://github.com/robertpreshyl/allyship-securitylab-VpNSIEM" class="footer-link" target="_blank" rel="noopener">GitHub</a></li>
+                        <li><a href="/readme" class="footer-link">Documentation</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Infrastructure Links -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Our Infrastructure</h4>
+                    <ul class="footer-list">
+                        <li><span class="footer-k">Main Site:</span> allyshipglobal.com</li>
+                        <li><span class="footer-k">Lab Platform:</span> lab.allyshipglobal.com</li>
+                        <li><span class="footer-k">ASL VPN:</span> asl.allyshipglobal.com</li>
+                        <li><span class="footer-k">VPN Services:</span> vpn.allyshipglobal.com</li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Disclaimer -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Disclaimer</h4>
+                    <p class="footer-disclaimer">This is a self-hosted lab built with the open-source NetBird project and Security Onion, created for practical cybersecurity research. Not affiliated with NetBird.io or Security Onion.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js" defer></script>
+</body>
+</html>
