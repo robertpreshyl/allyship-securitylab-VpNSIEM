@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="images/branding/asl-logo-full.png" alt="Allyship Security Lab" width="180" />
+<img src="images/branding/asl-logo-full2.png" alt="Allyship Security Lab" width="180" />
 
 # 🔒 Allyship Security Lab VPN - Cloud-Local SIEM
 
