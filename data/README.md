@@ -30,7 +30,7 @@ Large files are available as GitHub Releases:
 ## 📊 Available Datasets
 
 ### Sample Data (Included in Repository)
-- `sample-data/kibana-4625-attacks.csv` - Sample RDP brute force data
+- `sample-data/kibana-sample-anonymized.csv` - Anonymized attack data showing structure (real hostnames/IPs removed)
 - `sample-data/log-ingestion-benchmarks.csv` - Performance benchmarks
 
 ### Large Datasets (Available via Releases)

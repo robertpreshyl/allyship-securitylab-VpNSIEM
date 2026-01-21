@@ -151,11 +151,9 @@ graph TB
 
 *Real RDP brute-force attempts from global attackers (Kibana visualization)*
 
-#### 📥 **Download Raw Attack Data**
-```bash
-# Sample attack data (CSV format)
-data/sample-data/kibana-4625-attacks.csv
-```
+#### 📥 **Attack Data**
+
+Raw logs retained locally only (contains internal hostnames, endpoint IPs, and network topology). Anonymized sample available at `data/sample-data/kibana-sample-anonymized.csv` showing data structure. Original dataset: 470,000+ events extracted from Security Onion/Kibana.
 
 ### 💡 **Key Security Insights**
 
